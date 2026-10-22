@@ -41,3 +41,10 @@ No user-imported fonts, full DTP shaping, automatic word wrapping, PDF export or
 ### Creative references
 
 [SuperformulaSVG by Jason Webb](https://github.com/jasonwebb/SuperformulaSVG) inspired the nested radial exploration, and [isogrid by Frederik Vanhoutte / wblut](https://github.com/wblut/isogrid) inspired the isometric exploration. Both referenced projects target Processing. `dist/geometry-engines.js` is an original JavaScript implementation for PLOTR, not a bundled copy or complete port of either library. The isometric engine uses height fields; it does not implement the full original library's arbitrary voxel operations.
+
+
+## Multi-scale cubes
+
+Isogrid now opens in **Cubes multi-échelles** mode. Recursive octree subdivision creates disjoint cubes of genuinely different widths, depths and heights. Up to three size levels (1:2:4), subdivision probability, occupancy, cube spacing and 1–3 vertical modules control fragmented volumes and towers. At 0% subdivision the large leaves remain; at 100% all leaves have the smallest size. Occupancy removes entire leaves to create cavities. Occlusion is computed on the resulting faces before SVG export. Favorites retain all settings. Existing terrain/city/steps favorites keep their original construction.
+
+Isogrid framing offers **Structure entière** and **Remplir la zone**. Fill fits the printable rectangle inside the projected convex hull, then clips geometry to the margins. It preserves isometric proportions, with 50–250% zoom and horizontal/vertical pan. Geometric cavities remain empty. Terrain/city/steps keep a fixed world footprint independent of cell count and height. Vertical face courses follow cell spacing, with a partial course at the top where necessary. Increasing grid density no longer flattens the relief.
