@@ -1,6 +1,6 @@
 # PLOTR // Studio — démarrer et conserver le projet
 
-Cette archive contient le code source complet de la version publiée, les quatre moteurs, le mode Affiche, Type Playground et les polices avec leurs licences.
+Cette archive contient le code source complet de la version publiée, les six moteurs (dont Superformula et Isogrid), le mode Affiche, Type Playground et les polices avec leurs licences.
 
 ## Ouvrir sur votre ordinateur
 
