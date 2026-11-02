@@ -48,3 +48,16 @@ No user-imported fonts, full DTP shaping, automatic word wrapping, PDF export or
 Isogrid now opens in **Cubes multi-échelles** mode. Recursive octree subdivision creates disjoint cubes of genuinely different widths, depths and heights. Up to three size levels (1:2:4), subdivision probability, occupancy, cube spacing and 1–3 vertical modules control fragmented volumes and towers. At 0% subdivision the large leaves remain; at 100% all leaves have the smallest size. Occupancy removes entire leaves to create cavities. Occlusion is computed on the resulting faces before SVG export. Favorites retain all settings. Existing terrain/city/steps favorites keep their original construction.
 
 Isogrid framing offers **Structure entière** and **Remplir la zone**. Fill fits the printable rectangle inside the projected convex hull, then clips geometry to the margins. It preserves isometric proportions, with 50–250% zoom and horizontal/vertical pan. Geometric cavities remain empty. Terrain/city/steps keep a fixed world footprint independent of cell count and height. Vertical face courses follow cell spacing, with a partial course at the top where necessary. Increasing grid density no longer flattens the relief.
+
+## Exploration étendue (v6)
+
+- **Optical** : horizontales/verticales, plis angulaires, lecture d’image JPG/PNG/WebP locale, pas d’échantillonnage, contraste/inversion, protection contre le croisement des lignes (hors anneaux et déformations Affiche).
+- **Superformula** : zoom 25–300 %, avec découpe aux marges.
+- **Trames modulaires** : cercles décentrés, éventails, carrés tournoyants, méandres et circuits ; grille, rotation et variation déterministes ; image pilotant la densité.
+- **Rubans** : organiques ou angulaires, superposition avec suppression géométrique des portions cachées. Aucun aplat blanc de masquage.
+- **Type Playground** : motifs découpés dans les contours des lettres (contreformes préservées), échos de distance autour du texte, préréglages « Lettres matières » et « Texte & échos ». Les polices épaisses et grands corps donnent les motifs les plus lisibles. L’image peut piloter la taille du texte répété et le détail des motifs.
+- **Affiche** : matière typographique par bloc, motif et taille des modules réglables.
+
+Les images importées restent locales. Une carte de luminosité de 180 px maximum est conservée dans les favoris et les métadonnées ; le SVG visible reste exclusivement vectoriel. Les échos sont des contours de distance échantillonnés à 1,1 mm, et non une reproduction exacte des affiches de référence. Les motifs internes peuvent comporter des intersections intentionnelles ; l’occultation concerne les superpositions de rubans. Le mode Affiche peut déformer les tracés après leur génération.
+
+Vérification : `node tests/geometry.cjs` et `node tests/creative.cjs`.

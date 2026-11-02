@@ -2,11 +2,11 @@
    Creative references: jasonwebb/SuperformulaSVG and wblut/isogrid (see README).
    No third-party source code is embedded. Geometry is in paper millimeters. */
 const geometryDefaults={
- super:{m:6,n1:.7,n2:1.7,n3:1.7,a:1,b:1,iterations:36,decay:1.35,twist:24,morph:0,rotation:0,columns:1,rows:1},
+ super:{zoom:100,m:6,n1:.7,n2:1.7,n3:1.7,a:1,b:1,iterations:36,decay:1.35,twist:24,morph:0,rotation:0,columns:1,rows:1},
  iso:{cells:12,height:6,frequency:2.3,occupancy:65,hatch:3,rotation:0,mode:'blocks',levels:3,subdivision:68,stacks:1,gap:0,framing:'fit',zoom:100,panX:0,panY:0}
 };
 const geometrySpecs={
- super:[['m','Symétrie · nombre de pointes',2,16,2],['n1','n₁ · tension',.15,10,.05],['n2','n₂ · courbure cosinus',.15,10,.05],['n3','n₃ · courbure sinus',.15,10,.05],['a','a · axe cosinus',.3,2,.05],['b','b · axe sinus',.3,2,.05],['iterations','Contours imbriqués',1,90,1],['decay','Décroissance des contours',.4,3,.05],['twist','Torsion entre contours (°)',-120,120,1],['morph','Variation de forme',0,1,.05],['rotation','Rotation (°)',-180,180,1],['columns','Colonnes',1,4,1],['rows','Rangées',1,5,1]],
+ super:[['zoom','Zoom de la forme (%)',25,300,5],['m','Symétrie · nombre de pointes',2,16,2],['n1','n₁ · tension',.15,10,.05],['n2','n₂ · courbure cosinus',.15,10,.05],['n3','n₃ · courbure sinus',.15,10,.05],['a','a · axe cosinus',.3,2,.05],['b','b · axe sinus',.3,2,.05],['iterations','Contours imbriqués',1,90,1],['decay','Décroissance des contours',.4,3,.05],['twist','Torsion entre contours (°)',-120,120,1],['morph','Variation de forme',0,1,.05],['rotation','Rotation (°)',-180,180,1],['columns','Colonnes',1,4,1],['rows','Rangées',1,5,1]],
  iso:[['levels','Niveaux de tailles · 1 à 3',1,3,1],['subdivision','Subdivision · petits cubes (%)',0,100,1],['stacks','Empilement vertical',1,3,1],['gap','Espacement des cubes (%)',0,20,1],['cells','Grille · cellules par côté',4,22,1],['height','Hauteur du relief · relative',1,12,1],['frequency','Fréquence du relief',.5,5,.1],['occupancy','Occupation (%)',25,100,1],['hatch','Hachures par face',0,8,1],['rotation','Point de vue · quarts de tour',0,3,1],['zoom','Zoom (%)',50,250,5],['panX','Cadrage horizontal (%)',-50,50,1],['panY','Cadrage vertical (%)',-50,50,1]]
 };
 const superPresets={petal:{m:6,n1:.7,n2:1.7,n3:1.7,a:1,b:1,twist:24,morph:0},star:{m:8,n1:.3,n2:1,n3:1,a:1,b:1,twist:0,morph:.1},square:{m:4,n1:4,n2:4,n3:4,a:1,b:1,twist:35,morph:.3},shell:{m:10,n1:1.7,n2:3,n3:3,a:1,b:1,twist:90,morph:.8}};
@@ -27,7 +27,7 @@ function generateSuper(p,colors){
     maxRadius=Math.max(maxRadius,radius);pts.push([Math.cos(angle+rotation)*radius,Math.sin(angle+rotation)*radius]);
    }curves.push(pts);
   }
-  const scale=Math.min(cw,ch)*.46/Math.max(maxRadius,1e-12);
+  const scale=Math.min(cw,ch)*.46*(p.zoom/100)/Math.max(maxRadius,1e-12);
   curves.forEach((pts,i)=>{const curve=pts.map(([x,y])=>[cx+x*scale,cy+y*scale]);curve.push(curve[0]);add(curve,(i+row+col)%colors)});
  }
 }
