@@ -1,6 +1,6 @@
 # PLOTR // Studio
 
-Static browser-side generative studio. No build step. `dist/index.html` loads six vector engines and the poster compositor.
+Static browser-side generative studio. No build step. `dist/index.html` loads nine vector engines and the poster compositor.
 
 ## Poster edition
 
@@ -49,15 +49,30 @@ Isogrid now opens in **Cubes multi-échelles** mode. Recursive octree subdivisio
 
 Isogrid framing offers **Structure entière** and **Remplir la zone**. Fill fits the printable rectangle inside the projected convex hull, then clips geometry to the margins. It preserves isometric proportions, with 50–250% zoom and horizontal/vertical pan. Geometric cavities remain empty. Terrain/city/steps keep a fixed world footprint independent of cell count and height. Vertical face courses follow cell spacing, with a partial course at the top where necessary. Increasing grid density no longer flattens the relief.
 
-## Exploration étendue (v6)
+## Exploration étendue (v6 ; les réglages image ont depuis été regroupés dans IMAGE)
 
-- **Optical** : horizontales/verticales, plis angulaires, lecture d’image JPG/PNG/WebP locale, pas d’échantillonnage, contraste/inversion, protection contre le croisement des lignes (hors anneaux et déformations Affiche).
+- **Optical** : horizontales/verticales, plis angulaires, protection contre le croisement des lignes (hors anneaux et déformations Affiche).
 - **Superformula** : zoom 25–300 %, avec découpe aux marges.
-- **Trames modulaires** : cercles décentrés, éventails, carrés tournoyants, méandres et circuits ; grille, rotation et variation déterministes ; image pilotant la densité.
+- **Trames modulaires** : cercles décentrés, éventails, carrés tournoyants, méandres et circuits ; grille, rotation et variation déterministes .
 - **Rubans** : organiques ou angulaires, superposition avec suppression géométrique des portions cachées. Aucun aplat blanc de masquage.
-- **Type Playground** : motifs découpés dans les contours des lettres (contreformes préservées), échos de distance autour du texte, préréglages « Lettres matières » et « Texte & échos ». Les polices épaisses et grands corps donnent les motifs les plus lisibles. L’image peut piloter la taille du texte répété et le détail des motifs.
+- **Type Playground** : motifs découpés dans les contours des lettres (contreformes préservées), échos de distance autour du texte, préréglages « Lettres matières » et « Texte & échos ». Les polices épaisses et grands corps donnent les motifs les plus lisibles.
 - **Affiche** : matière typographique par bloc, motif et taille des modules réglables.
 
-Les images importées restent locales. Une carte de luminosité de 180 px maximum est conservée dans les favoris et les métadonnées ; le SVG visible reste exclusivement vectoriel. Les échos sont des contours de distance échantillonnés à 1,1 mm, et non une reproduction exacte des affiches de référence. Les motifs internes peuvent comporter des intersections intentionnelles ; l’occultation concerne les superpositions de rubans. Le mode Affiche peut déformer les tracés après leur génération.
+Les images importées restent locales. Les échos sont des contours de distance échantillonnés à 1,1 mm, et non une reproduction exacte des affiches de référence. Les motifs internes peuvent comporter des intersections intentionnelles ; l’occultation concerne les superpositions de rubans. Le mode Affiche peut déformer les tracés après leur génération.
 
 Vérification : `node tests/geometry.cjs` et `node tests/creative.cjs`.
+
+
+## IMAGE · atelier photo pour plume (v7)
+
+Choisir **IMAGE** dans les moteurs, puis importer ou déposer un JPG, PNG ou WebP. **Essayer une étude** fournit une petite nature morte si aucune photo n’est disponible. Le cadrage et la source sont communs à tous les procédés. Seul IMAGE utilise la photo ; les huit autres moteurs restent autonomes.
+
+- **Pointillisme** : points fins, petites tailles ou grains en spirale. Le grain s’enroule sur le papier pour obtenir des noirs avec une plume de largeur fixe.
+- **Taille-douce, lignes de gravure, relief optique** : orientation libre, tailles croisées par seuil de luminosité, traits interrompus ou déplacés. Pour des lignes verticales, choisir 90°.
+- **Fil griffonné**, **trame de formes**, **portrait ASCII**, **microtypographie** : boucles orientées par les gradients, cercles/carrés/losanges/croix, alphabet tonal personnalisable, ou texte personnel dont le corps varie avec l’image.
+- **Sillon continu** : la spirale vibre dans les zones sombres. Le recadrage peut la diviser en plusieurs chemins. **Courbes de niveau** : contours de gris assemblés en polylignes.
+- Pas en millimètres, encrage, niveaux automatiques, contraste, gamma, réserve des blancs, renfort des détails, lissage de la trame source et inversion. Cadrage entier/remplir, zoom et décalages.
+- Le traitement est local, jusqu’à 1024 pixels sur le grand côté. Les favoris incluent une copie compacte de la photo ; le SVG contient seulement des chemins de dessin et des métadonnées sans bitmap. Affiche permet d’ajouter du texte et une réserve autour des lettres.
+- Pour un premier portrait : essayer Pointillisme avec un pas de 0,8 à 1 mm. Si le papier se couvre trop, augmenter la réserve des blancs. Une photo déjà tramée peut bénéficier d’un lissage plus élevé.
+
+Tests : `node tests/image.cjs`. Les captures et photos de référence privées ne sont pas distribuées avec le projet.
